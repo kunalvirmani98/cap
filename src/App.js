@@ -1,12 +1,13 @@
 import './App.css';
 import Filter from './components/filter';
 import Vacancies from './components/vacancies';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setData } from './store/reducer';
 import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
 
   useEffect(() => {
     const myHeaders = new Headers();
