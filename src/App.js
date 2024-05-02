@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Filter from './components/filter';
 import Vacancies from './components/vacancies';
