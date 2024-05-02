@@ -19,8 +19,9 @@ const appReducer = (state = initialState, action) => {
 };
 
 // Action creators
-export const setData = () => ({
-    type: 'SETDATA'
+export const setData = (payload) => ({
+    type: 'SETDATA',
+    payload
 })
 
 export default appReducer;
