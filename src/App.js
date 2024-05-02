@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Filter from './components/filter';
+import Vacancies from './components/vacancies';
 
 function App() {
   return (
     <div className="App">
-      <h1>React</h1>
+      <Filter />
+      <Vacancies />
     </div>
   );
 }
