@@ -6,6 +6,7 @@ const initialState = {
 
     // Filter data
     remote: [],
+    minExperience: undefined,
 };
 
 // Reducer function
@@ -20,7 +21,12 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 remote: action.payload
-            }
+            };
+        case 'SETMINEXP':
+            return {
+                ...state,
+                minExperience: action.payload
+            };
         default:
             return state;
     }
@@ -34,6 +40,11 @@ export const setData = (payload) => ({
 
 export const setRemote = (payload) => ({
     type: 'SETREMOTE',
+    payload
+})
+
+export const setMinExperience = (payload) => ({
+    type: 'SETMINEXP',
     payload
 })
 
