@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function Vacancies() {
     const data = useSelector(state => state.data);
 
-    if (data?.length == 0) return <h1 style={{ color: 'red' }}>No Vacanies!</h1>
+    if (data?.length == 0) return <h1>Loading... Please wait!</h1>
 
     return (
         <div>
