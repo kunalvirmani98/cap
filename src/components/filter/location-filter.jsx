@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { setRemote } from '../store/reducer';
-import * as React from 'react';
+import { setRemote } from '../../store/reducer';
 import { Theme, useTheme } from '@mui/material/styles';
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,13 +14,7 @@ const preferences = [
   'remote', 'on-site'
 ];
 
-export default function Filter() {
-    return (
-        <Location />
-    )
-}
-
-function Location() {
+export default function LocationFilter() {
     const [preference, setPreference] = React.useState([]);
     const dispatch = useDispatch();
 
@@ -40,7 +34,7 @@ function Location() {
     return (
         <div>
             <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+                <InputLabel id="demo-multiple-chip-label">Remote</InputLabel>
                 <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"

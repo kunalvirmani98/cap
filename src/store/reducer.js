@@ -7,6 +7,10 @@ const initialState = {
     // Filter data
     remote: [],
     minExperience: undefined,
+    name: '',
+    role: [],
+    noOfEmployees: undefined,
+    minBasePay: undefined
 };
 
 // Reducer function
@@ -27,6 +31,26 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 minExperience: action.payload
             };
+        case 'SETNAME':
+            return {
+                ...state,
+                name: action.payload
+            }
+        case 'SETROLE':
+            return {
+                ...state,
+                role: action.payload
+            }
+        case 'SETNOOFEMP':
+            return {
+                ...state,
+                noOfEmployees: action.payload
+            }
+        case 'SETMINBASEPAY':
+            return {
+                ...state,
+                minBasePay: action.payload
+            }
         default:
             return state;
     }
@@ -38,13 +62,33 @@ export const setData = (payload) => ({
     payload
 })
 
-export const setRemote = (payload) => ({
-    type: 'SETREMOTE',
+export const setRole = (payload) => ({
+    type: 'SETROLE',
+    payload
+})
+
+export const setNoOfEmployees = (payload) => ({
+    type: 'SETNOOFEMP',
     payload
 })
 
 export const setMinExperience = (payload) => ({
     type: 'SETMINEXP',
+    payload
+})
+
+export const setRemote = (payload) => ({
+    type: 'SETREMOTE',
+    payload
+})
+
+export const setMinBasePay = (payload) => ({
+    type: 'SETMINBASEPAY',
+    payload
+})
+
+export const setCompanyName = (payload) => ({
+    type: 'SETNAME',
     payload
 })
 

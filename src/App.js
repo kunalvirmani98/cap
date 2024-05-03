@@ -1,5 +1,5 @@
 import './App.css';
-import Filter from './components/filter';
+import Filter from './components/filter/filter';
 import Vacancies from './components/vacancies';
 import { useDispatch, useSelector } from 'react-redux';
 import { setData } from './store/reducer';
