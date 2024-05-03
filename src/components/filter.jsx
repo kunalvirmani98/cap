@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../store/reducer';
+import { setRemote } from '../store/reducer';
 import * as React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 const preferences = [
-  'remote', 'hybrid', 'in-office'
+  'remote', 'on-site'
 ];
 
 export default function Filter() {
@@ -22,6 +22,7 @@ export default function Filter() {
 
 function Location() {
     const [preference, setPreference] = React.useState([]);
+    const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const {
@@ -32,6 +33,8 @@ function Location() {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+
+    dispatch(setRemote(typeof value === 'string' ? value.split(',') : value))
   };
 
     return (

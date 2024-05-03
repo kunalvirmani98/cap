@@ -2,7 +2,10 @@ import { type } from "@testing-library/user-event/dist/type";
 
 // Initial state
 const initialState = {
-    data: []
+    data: [],
+
+    // Filter data
+    remote: [],
 };
 
 // Reducer function
@@ -13,6 +16,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload
             };
+        case 'SETREMOTE':
+            return {
+                ...state,
+                remote: action.payload
+            }
         default:
             return state;
     }
@@ -21,6 +29,11 @@ const appReducer = (state = initialState, action) => {
 // Action creators
 export const setData = (payload) => ({
     type: 'SETDATA',
+    payload
+})
+
+export const setRemote = (payload) => ({
+    type: 'SETREMOTE',
     payload
 })
 
