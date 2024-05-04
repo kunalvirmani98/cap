@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 const preferences = [
-  'remote', 'on-site'
+  'remote', 'on-site', 'hybrid'
 ];
 
 export default function LocationFilter() {
@@ -33,40 +33,41 @@ export default function LocationFilter() {
 
   const handleDelete = (value) => {
     let pref = preference.filter((_preference) => _preference !== value );
-    
+
     setPreference(pref);
     dispatch(setRemote(pref));
   }
 
     return (
-        <div>
-            <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-chip-label">Remote</InputLabel>
-                <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={preference}
-                onChange={handleChange}
-                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                        <Chip key={value} label={value} onMouseDown={(e) => e.stopPropagation()} onDelete={(e) => handleDelete(value)}/>
-                    ))}
-                    </Box>
-                )}
-                >
-                {preferences.filter((name) => !preference.includes(name)).map((name) => (
-                    <MenuItem
-                    key={name}
-                    value={name}
+            <div>
+                {/* {preference.length > 0 && <p className='label'>Remote</p>} */}
+                <FormControl size='small'>
+                    <InputLabel id="demo-multiple-chip-label">Remote</InputLabel>
+                    <Select
+                    labelId="demo-multiple-chip-label"
+                    id="location-multi-select"
+                    multiple
+                    value={preference}
+                    onChange={handleChange}
+                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                            <Chip key={value} label={value} size="sm" onMouseDown={(e) => e.stopPropagation()} onDelete={(e) => handleDelete(value)} shape='square'/>
+                        ))}
+                        </Box>
+                    )}
                     >
-                    {name}
-                    </MenuItem>
-                ))}
-                </Select>
-            </FormControl>
-        </div>
+                    {preferences.filter((name) => !preference.includes(name)).map((name) => (
+                        <MenuItem
+                        key={name}
+                        value={name}
+                        >
+                        {name}
+                        </MenuItem>
+                    ))}
+                    </Select>
+                </FormControl>
+            </div>
     )
 }

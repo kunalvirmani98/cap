@@ -17,11 +17,11 @@ export default function MinBasePayFilter() {
   };
 
   return (
-      <FormControl sx={{ minWidth: 300 }}>
-        <InputLabel id="experience-label">Min Base Pay</InputLabel>
+      <FormControl sx={{ minWidth: 300 }} size="small">
+        <InputLabel id="min-pay-label">Min Base Pay</InputLabel>
         <Select
-          labelId="experience-label"
-          id="experience-select"
+          labelId="min-pay-label"
+          id="min-pay-select"
           value={minbasepay}
           label="Experience"
           onChange={handleChange}

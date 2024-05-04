@@ -7,7 +7,7 @@ import MinBasePayFilter from './min-base-pay-filter';
 
 export default function Filter() {
     return (
-      <div className='d-flex'>
+      <div className='filter'>
         <LocationFilter />
         <ExperienceFilter />
         <NameFilter />

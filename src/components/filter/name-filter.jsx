@@ -15,12 +15,6 @@ export default function NameFilter() {
     }
 
   return (
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="outlined-basic" label="Company Name" variant="outlined" value={name} onChange={handleChange}/>
-    </Box>
+      <TextField id="name-filter" label="Company Name" variant="outlined" value={name} onChange={handleChange} size="small"/>
   );
 }

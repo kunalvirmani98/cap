@@ -40,8 +40,9 @@ export default function RoleFilter() {
   }
 
     return (
-        <div>
-            <FormControl sx={{ m: 1, width: 300 }}>
+          <div>
+            {/* {role.length > 0 && <p className='label'>Role</p>} */}
+            <FormControl sx={{ m: 1, width: 300 }} size="small">
                 <InputLabel id="role-multi-label">Remote</InputLabel>
                 <Select
                 labelId="role-multi-label"
@@ -90,6 +91,6 @@ export default function RoleFilter() {
                   ))}
                 </Select>
             </FormControl>
-        </div>
+          </div>
     )
 }

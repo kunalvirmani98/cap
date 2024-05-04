@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Button } from '@mui/material';
 import { setMinExperience } from '../../store/reducer';
 import { useDispatch } from 'react-redux';
 
@@ -16,29 +17,37 @@ export default function ExperienceFilter() {
     dispatch(setMinExperience(parseInt(event.target.value)));
   };
 
+  const handleClose = () => {
+    console.log('Close icon clicked');
+    // Add your logic here to handle the close icon click
+  };
+
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl>
-        <InputLabel id="experience-label">Age</InputLabel>
-        <Select
-          labelId="experience-label"
-          id="experience-select"
-          value={minexp}
-          label="Experience"
-          onChange={handleChange}
-        >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={6}>6</MenuItem>
-          <MenuItem value={7}>7</MenuItem>
-          <MenuItem value={8}>8</MenuItem>
-          <MenuItem value={9}>9</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+    <div>
+        {/* <p className='label'>{(minexp !== '') && 'Experience'}</p> */}
+        <FormControl size='small'>
+            <InputLabel id="experience-label">Experience</InputLabel>
+            <Select
+            labelId="experience-label"
+            id="experience-filter"
+            // IconComponent={"X"}
+            value={minexp}
+            label="Experience"
+            // onClose={handleClose}
+            onChange={handleChange}
+            >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+            <MenuItem value={6}>6</MenuItem>
+            <MenuItem value={7}>7</MenuItem>
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            </Select>
+        </FormControl>
+    </div>
   );
 }
