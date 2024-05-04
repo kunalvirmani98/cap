@@ -2,15 +2,15 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .job-listing {
   display: flex;
   flex-wrap: wrap;
-  width: 1280px;
-  justify-content: space-between;
+  width: 1250px;
+  justify-content: flex-start;
   padding-top: 50px;
 }
 
@@ -66,6 +66,11 @@
   border-radius: 20px !important;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.card:nth-child(3n-1) {
+  margin-left: 85px;
+  margin-right: 85px;
 }
 
 .card:hover {
@@ -172,10 +177,12 @@
 
 #location-multi-select {
   min-width: 200px;
+  /* margin-right: 8px; */
 }
 
 #experience-filter {
   min-width: 120px;
+  /* margin-right: 8px !important; */
 } 
 
 #min-pay-filter {

@@ -23,8 +23,13 @@ export default function Vacancies() {
         let flag = true;
         
         // Filters : Remote, Minimum Experience, MinBasePay, CompanyName, Role
-        if (remote.length != 0) {
+        if (remote.length != 0) {            
             flag = remote.includes(jd.location);
+
+            if (remote.includes('on-site') && !jd.location.includes('remote')) {
+                flag = true;
+            }
+
             if (!flag) return flag;
         }
 
@@ -33,7 +38,7 @@ export default function Vacancies() {
             if (!flag) return flag;
         }
 
-        if (minBasePay) {
+        if (minBasePay || minBasePay == 0 && minBasePay != null) {
             flag = jd.minJdSalary ? jd.minJdSalary >= minBasePay : false;
             if (!flag) return flag;
         }

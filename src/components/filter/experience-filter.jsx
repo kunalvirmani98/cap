@@ -25,7 +25,7 @@ export default function ExperienceFilter() {
   return (
     <div>
         {/* <p className='label'>{(minexp !== '') && 'Experience'}</p> */}
-        <FormControl size='small'>
+        <FormControl size='small' sx={{ marginRight : '8px' }}>
             <InputLabel id="experience-label">Experience</InputLabel>
             <Select
             labelId="experience-label"
@@ -36,6 +36,7 @@ export default function ExperienceFilter() {
             // onClose={handleClose}
             onChange={handleChange}
             >
+            <MenuItem value="">None</MenuItem>
             <MenuItem value={1}>1</MenuItem>
             <MenuItem value={2}>2</MenuItem>
             <MenuItem value={3}>3</MenuItem>

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 function App() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
+  let fetchedRecords = 0;
 
   const handleScroll = () => {
     if (
@@ -23,7 +24,7 @@ function App() {
 
     const body = JSON.stringify({
       "limit": 10,
-      "offset": data.length
+      "offset": fetchedRecords
     });
 
     const requestOptions = {
@@ -38,11 +39,16 @@ function App() {
       const vacancyData = await response.json();
       console.log('data', vacancyData);
 
-      if (command == 'SET')
+      if (command == 'SET') {
+        fetchedRecords = 10;
         dispatch(setData(vacancyData.jdList));
+      }
 
-      if (command == 'UPDATE')
+      if (command == 'UPDATE') {
+        fetchedRecords = fetchedRecords + 10;
         dispatch(addData(vacancyData.jdList));
+      }
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }

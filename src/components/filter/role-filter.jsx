@@ -12,7 +12,7 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 
 const role_preferences = {
-  engineering : ['backend', 'frontend'],
+  engineering : ['Backend', 'Frontend'],
   hr : ['hr']
 };
 
@@ -25,11 +25,7 @@ export default function RoleFilter() {
       target: { value },
     } = event;
 
-    setRoleLocal(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-
+    setRoleLocal(typeof value === 'string' ? value.split(',') : value);
     dispatch(setRole(typeof value === 'string' ? value.split(',') : value))
   };
 
@@ -43,7 +39,7 @@ export default function RoleFilter() {
           <div>
             {/* {role.length > 0 && <p className='label'>Role</p>} */}
             <FormControl sx={{ m: 1, width: 300 }} size="small">
-                <InputLabel id="role-multi-label">Remote</InputLabel>
+                <InputLabel id="role-multi-label">Role</InputLabel>
                 <Select
                 labelId="role-multi-label"
                 id="role-multi-select"

@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { setMinExperience } from '../../store/reducer';
+import { setMinBasePay } from '../../store/reducer';
 import { useDispatch } from 'react-redux';
 
 export default function MinBasePayFilter() {
@@ -13,7 +13,7 @@ export default function MinBasePayFilter() {
 
   const handleChange = (event) => {
     setMinbasepay(event.target.value);
-    dispatch(setMinExperience(event.target.value));
+    dispatch(setMinBasePay(event.target.value));
   };
 
   return (
@@ -26,6 +26,7 @@ export default function MinBasePayFilter() {
           label="Experience"
           onChange={handleChange}
         >
+          <MenuItem value="">None</MenuItem>
           <MenuItem value={0}>0L</MenuItem>
           <MenuItem value={10}>10L</MenuItem>
           <MenuItem value={20}>20L</MenuItem>

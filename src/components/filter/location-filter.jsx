@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 const preferences = [
-  'remote', 'on-site', 'hybrid'
+  'Remote', 'On-site'
 ];
 
 export default function LocationFilter() {
@@ -41,7 +41,7 @@ export default function LocationFilter() {
     return (
             <div>
                 {/* {preference.length > 0 && <p className='label'>Remote</p>} */}
-                <FormControl size='small'>
+                <FormControl size='small' sx={{ marginRight: '8px' }}>
                     <InputLabel id="demo-multiple-chip-label">Remote</InputLabel>
                     <Select
                     labelId="demo-multiple-chip-label"
