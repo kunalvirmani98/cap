@@ -21,6 +21,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 data: action.payload
             };
+        case 'ADDDATA':
+            return {
+                ...state,
+                data: state.data.concat(action.payload)
+            }
         case 'SETREMOTE':
             return {
                 ...state,
@@ -89,6 +94,11 @@ export const setMinBasePay = (payload) => ({
 
 export const setCompanyName = (payload) => ({
     type: 'SETNAME',
+    payload
+})
+
+export const addData = (payload) => ({
+    type: 'ADDDATA',
     payload
 })
 

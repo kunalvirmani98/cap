@@ -31,6 +31,13 @@ export default function LocationFilter() {
     dispatch(setRemote(typeof value === 'string' ? value.split(',') : value))
   };
 
+  const handleDelete = (value) => {
+    let pref = preference.filter((_preference) => _preference !== value );
+    
+    setPreference(pref);
+    dispatch(setRemote(pref));
+  }
+
     return (
         <div>
             <FormControl sx={{ m: 1, width: 300 }}>
@@ -45,7 +52,7 @@ export default function LocationFilter() {
                 renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {selected.map((value) => (
-                        <Chip key={value} label={value} />
+                        <Chip key={value} label={value} onMouseDown={(e) => e.stopPropagation()} onDelete={(e) => handleDelete(value)}/>
                     ))}
                     </Box>
                 )}

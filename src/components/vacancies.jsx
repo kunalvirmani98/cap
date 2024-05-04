@@ -14,7 +14,7 @@ export default function Vacancies() {
     function applyFilter (jd) {
         let flag = true;
         
-        // Filters : Remote, Minimum Experience
+        // Filters : Remote, Minimum Experience, MinBasePay, CompanyName, Role
         if (remote.length != 0) {
             flag = remote.includes(jd.location);
             if (!flag) return flag;
@@ -35,8 +35,8 @@ export default function Vacancies() {
             if (!flag) return flag;
         }
 
-        if (role) {
-            flag = role.includes(jd.jobRole);
+        if (role.length != 0) {
+            flag = jd.jobRole ? role.includes(jd.jobRole) : false;
             if (!flag) return flag;
         }
 
@@ -45,6 +45,7 @@ export default function Vacancies() {
 
     if (data?.length == 0) return <h1>Loading... Please wait!</h1>
 
+    console.log ('Final data', data);
     return (
         <div>
             JOB DESCRIPTIONS

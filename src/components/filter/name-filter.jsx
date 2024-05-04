@@ -20,7 +20,7 @@ export default function NameFilter() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" value={name} onChange={handleChange}/>
+      <TextField id="outlined-basic" label="Company Name" variant="outlined" value={name} onChange={handleChange}/>
     </Box>
   );
 }
