@@ -22,12 +22,19 @@ export default function Vacancies() {
     function applyFilter (jd) {
         let flag = true;
         
+        console.log ('Filter selected', remote);
+        console.log ('Job Location', jd.location);
         // Filters : Remote, Minimum Experience, MinBasePay, CompanyName, Role
-        if (remote.length != 0) {            
-            flag = remote.includes(jd.location);
+        if (remote.length != 0) {
+            // if (remote.includes('on-site') && remote.includes('remote')) {
+            // }
 
-            if (remote.includes('on-site') && !jd.location.includes('remote')) {
-                flag = true;
+            if (remote.includes('on-site') && jd.location.toLowerCase() === 'remote') {
+                flag = false;
+            } 
+
+            if (remote.includes('remote') && jd.location.toLowerCase() != 'remote') {
+                flag = false;
             }
 
             if (!flag) return flag;

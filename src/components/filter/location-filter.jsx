@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 const preferences = [
-  'Remote', 'On-site'
+  'remote', 'on-site'
 ];
 
 export default function LocationFilter() {
