@@ -3,12 +3,14 @@ import Filter from './components/filter/filter';
 import Vacancies from './components/vacancies';
 import { useDispatch, useSelector } from 'react-redux';
 import { setData, addData } from './store/reducer';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
-  let fetchedRecords = 0;
+  let fetchedRecords = useRef(0);
 
   const handleScroll = () => {
     if (
@@ -19,12 +21,13 @@ function App() {
   };
 
   async function fetchData(command) {
+    setIsLoading(true);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({
       "limit": 10,
-      "offset": fetchedRecords
+      "offset": fetchedRecords.current
     });
 
     const requestOptions = {
@@ -35,37 +38,30 @@ function App() {
 
     // dispatch(setData(result.jd))
     try {
-      const response = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions);
+      const response = await fetch(process.env.REACT_APP_DATA_URL, requestOptions);
       const vacancyData = await response.json();
       console.log('data', vacancyData);
 
       if (command == 'SET') {
-        fetchedRecords = 10;
+        fetchedRecords.current = 10;
         dispatch(setData(vacancyData.jdList));
       }
 
       if (command == 'UPDATE') {
-        fetchedRecords = fetchedRecords + 10;
+        fetchedRecords.current = fetchedRecords.current + 10;
         dispatch(addData(vacancyData.jdList));
       }
 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-
-    // .then((response) => response.text())
-    // .then((result) => {
-    //   console.log(JSON.parse(result).jdList)
-    //   dispatch(setData(JSON.parse(result).jdList));
-    // })
-    // .catch((error) => console.error(error));
-
+    setIsLoading(false);
   }
 
-  useEffect(() => { fetchData('SET') }, []);
-
   useEffect(() => {
+    fetchData('SET');
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -73,6 +69,9 @@ function App() {
     <div className="App">
       <Filter />
       <Vacancies />
+      {
+        isLoading && <div>Loading jobs ...</div>
+      }
     </div>
   );
 }
