@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import Avatar from '@mui/material/Avatar';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useState } from 'react';
 
 export default function Vacancies() {
     const data = useSelector(state => state.data);
@@ -17,7 +18,6 @@ export default function Vacancies() {
     const companyName = useSelector(state => state.name);
     const role = useSelector(state => state.role);
     const minBasePay = useSelector(state => state.minBasePay);
-    const noOfEmployees = useSelector(state => state.noOfEmployees);
 
     function applyFilter (jd) {
         let flag = true;
@@ -69,7 +69,17 @@ export default function Vacancies() {
         <div className='job-listing'>
             {data && data.filter((jd) => applyFilter(jd)).map((jd, index) => {
                 return (
-                    <Paper className='card' key={`jd-${index}`} square={false} elevation={2}>
+                    <JobCard key={`jd-${index}`} jd={jd} />
+                )
+            })}
+        </div>
+    )
+}
+
+function JobCard ({ key, jd }) {
+    const [showMore, setShowMore] = useState(false);;
+    return (
+                    <Paper className='card' square={false} elevation={2}>
                         <Box className='chip-container'>
                             <Chip icon={<HourglassTopIcon />} label="Posted 10 days ago" variant='outlined' className='chip' size='small' />
                         </Box>
@@ -86,9 +96,9 @@ export default function Vacancies() {
                             <p className='description-label'>About Company:</p>
                             <p className='description-content'>{jd.jobDetailsFromCompany}</p>
                             {
-                            jd.jobDetailsFromCompany.length > 350 && <div className='show-more-section'>
-                                <Button>Show more</Button>
-                            </div>
+                                <div className={(jd.jobDetailsFromCompany?.length > 350 && showMore) ? `d-none` : `show-more-section`}>
+                                    <Button onClick={(e) => setShowMore(true)}>Show more</Button>
+                                </div>
                             }
                         </div>
                         <div className='info-container'>
@@ -116,8 +126,5 @@ export default function Vacancies() {
                             </Button>
                         </div>
                     </Paper>
-                )
-            })}
-        </div>
     )
 }
