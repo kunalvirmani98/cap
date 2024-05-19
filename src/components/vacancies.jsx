@@ -63,7 +63,7 @@ export default function Vacancies() {
         return flag;
     }
 
-    if (data?.length == 0) return <CircularProgress sx={{ marginTop: '100px' }}/>
+    // if (data?.length == 0) return <CircularProgress sx={{ marginTop: '100px' }}/>
 
     return (
         <div className='job-listing'>
@@ -77,7 +77,7 @@ export default function Vacancies() {
 }
 
 function JobCard ({ key, jd }) {
-    const [showMore, setShowMore] = useState(false);;
+    const [showMore, setShowMore] = useState(false);
     return (
                     <Paper className='card' square={false} elevation={2}>
                         <Box className='chip-container'>

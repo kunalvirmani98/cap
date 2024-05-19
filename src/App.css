@@ -22,6 +22,9 @@
     font-size: 12px !important;
   }
 }
+.MuiLinearProgress-bar {
+  background-color: #939aa0 !important;
+}
 
 .info {
   display: inline-block;
