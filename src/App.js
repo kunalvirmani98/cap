@@ -9,6 +9,14 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Height } from '@mui/icons-material';
 
+const loaderStyle = {
+  height: '12px',
+  background: 'lightgray',
+  borderRadius: '4px',
+  width: '50px',
+  marginBottom: '4px',
+};
+
 function App() {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,7 +53,7 @@ function App() {
     try {
       const response = await fetch(process.env.REACT_APP_DATA_URL, requestOptions);
       const vacancyData = await response.json();
-      console.log('data', vacancyData);
+      // console.log('data', vacancyData);
 
       if (command == 'SET') {
         fetchedRecords.current = 10;
@@ -76,10 +84,10 @@ function App() {
       <Vacancies />
       {
         isLoading &&
-        <div>
-          <CardLoader />
-          <CardLoader />
-          <CardLoader />
+        <div className='loader-listing'>
+          {
+            GenerateLoaders('card', 10)
+          }
         </div>
       }
     </div>
@@ -87,14 +95,6 @@ function App() {
 }
 
 function CardLoader() {
-  const loaderStyle = {
-    height: '12px',
-    background: 'lightgray',
-    borderRadius: '4px',
-    width: '50px',
-    marginBottom: '4px',
-  };
-
   return (
     <Paper className='card' square={false} elevation={2}>
       <Box className='chip-container'>
@@ -109,24 +109,7 @@ function CardLoader() {
       <p className='salary-range'><LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '200px' }} /></p>
       <div className='description-container'>
         <p className='description-content'>
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
-          <LinearProgress variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />
+          {GenerateLoaders('linear', 18)}
         </p>
       </div>
       <div className='info-container'>
@@ -135,6 +118,27 @@ function CardLoader() {
       </div>
     </Paper>
   )
+}
+
+function GenerateLoaders(type, count) {
+  if (type === 'card') {
+    let cardLoaderArray = [];
+
+    for (let i = 0; i < count; i++) {
+      cardLoaderArray.push(<CardLoader key={`card-loader-${i}`} />);
+    }
+
+    return cardLoaderArray;
+  }
+  else if (type === 'linear') {
+    let linearLoaderArray = [];
+
+    for (let i = 0; i < count; i++) {
+      linearLoaderArray.push(<LinearProgress key={`linear-loader-${i}`} variant='indeterminate' color='primary' sx={{ ...loaderStyle, width: '300px' }} />);
+    }
+
+    return linearLoaderArray;
+  }
 }
 
 export default App;
