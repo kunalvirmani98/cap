@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setData, addData } from './store/reducer';
 import { useEffect, useRef, useState } from 'react';
 import { LinearProgress } from '@mui/material';
+import NavBar from './components/navbar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Height } from '@mui/icons-material';
@@ -19,11 +20,10 @@ const loaderStyle = {
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
+  const [appError, setAppError] = useState(null);
 
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.data);
   let fetchedRecords = useRef(0);
-  let loaderCount = 10;
 
   const handleScroll = () => {
     if (
@@ -67,6 +67,7 @@ function App() {
 
     } catch (error) {
       console.error('Error fetching data:', error);
+      setAppError(error);
     }
     setIsLoading(false);
   }
@@ -78,9 +79,18 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (appError) {
+    return (
+      <div className='App'>
+        <Error />
+      </div>
+    )
+  }
+
   return (
     <div className="App">
-      <Filter />
+      <NavBar />
+      <Filter isLoading={isLoading} />
       <Vacancies />
       {
         isLoading &&
@@ -139,6 +149,12 @@ function GenerateLoaders(type, count) {
 
     return linearLoaderArray;
   }
+}
+
+function Error() {
+  return (
+    <p style={{ textAlign: 'center', fontSize: '20px', color: 'red' }}>Aw Snap! Error occured while loading application</p>
+  )
 }
 
 export default App;
