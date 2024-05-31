@@ -9,6 +9,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGIN':
+            console.log('Login works!');
             // check
             //     email in database;
             // if (email)
@@ -19,6 +20,7 @@ const authReducer = (state = initialState, action) => {
             //     redirect to login;
             break;
         case 'LOGOUT':
+            console.log('Logout works!');
             break;
         default:
             return state;

@@ -8,7 +8,6 @@ import { LinearProgress } from '@mui/material';
 import NavBar from './components/navbar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { Height } from '@mui/icons-material';
 
 const loaderStyle = {
   height: '12px',
@@ -21,6 +20,7 @@ const loaderStyle = {
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [appError, setAppError] = useState(null);
+
 
   const dispatch = useDispatch();
   let fetchedRecords = useRef(0);
@@ -79,10 +79,18 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (appError) {
+  if (isLoggedIn && appError) {
     return (
       <div className='App'>
         <Error />
+      </div>
+    )
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className='App'>
+        <Login />
       </div>
     )
   }
