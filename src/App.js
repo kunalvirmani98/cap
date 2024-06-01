@@ -1,6 +1,7 @@
 import './App.css';
 import Filter from './components/filter/filter';
 import Vacancies from './components/vacancies';
+import Login from './components/login/login';
 import { useDispatch, useSelector } from 'react-redux';
 import { setData, addData } from './store/reducer';
 import { useEffect, useRef, useState } from 'react';
@@ -20,7 +21,7 @@ const loaderStyle = {
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [appError, setAppError] = useState(null);
-
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   const dispatch = useDispatch();
   let fetchedRecords = useRef(0);
@@ -79,13 +80,15 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (isLoggedIn && appError) {
-    return (
-      <div className='App'>
-        <Error />
-      </div>
-    )
-  }
+  /*
+    LOGIC TO BE REVAMPED
+   isLoggedIn AppState 
+   false      Init           -> Show Login 
+   true       Init           -> Show App without any data
+   true       Loading        -> Show Loader
+   true       Error          -> Show Error
+   true       Success        -> show App with data
+  */
 
   if (!isLoggedIn) {
     return (
@@ -95,21 +98,31 @@ function App() {
     )
   }
 
-  return (
-    <div className="App">
-      <NavBar />
-      <Filter isLoading={isLoading} />
-      <Vacancies />
-      {
-        isLoading &&
-        <div className='loader-listing'>
-          {
-            GenerateLoaders('card', 10)
-          }
-        </div>
-      }
-    </div>
-  );
+  if (isLoggedIn && appError) {
+    return (
+      <div className='App'>
+        <Error />
+      </div>
+    )
+  }
+
+  if (isLoggedIn) {
+    return (
+      <div className="App">
+        <NavBar />
+        <Filter isLoading={isLoading} />
+        <Vacancies />
+        {
+          isLoading &&
+          <div className='loader-listing'>
+            {
+              GenerateLoaders('card', 10)
+            }
+          </div>
+        }
+      </div>
+    );
+  }
 }
 
 function CardLoader() {

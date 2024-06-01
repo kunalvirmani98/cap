@@ -1,11 +1,12 @@
-import { useState } from "react"
+import React from "react";
+import {useState} from "react";
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
 export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginState, setLoginState] = useState({state: '', message : ''});
-
-
+    const [loginState, setLoginState] = useState({state: 'init', message : ''});
 
     // INIT
 
@@ -19,10 +20,27 @@ export default function Login () {
     // Password does not match
     // Network connection error
 
+    function handleLogin (e) {
+        console.log ('Login works!');
+    }
+
+    function handleEmail (e) {
+        setEmail(e.target.value);
+    }
+
+    function handlePassword (e) {
+        setPassword(e.target.value);
+    }
+
     return (
-        <div>
-            <p>Login works!</p>
-            <button onClick={handleLogin}>Login</button>
-        </div>
+        <form noValidate autoComplete="off">
+            <FormControl sx={{ width: '25ch' }} required>
+                <TextField id="email" label="Email" variant="standard" onChange={handleEmail} type='email' />
+            </FormControl>
+            <FormControl>
+                <TextField id="password" label="Password" type="password" variant="standard" />
+            </FormControl>
+            <button className="referral-button" style={{color: 'white'}}>LOG IN</button>
+        </form>
     )
 }
