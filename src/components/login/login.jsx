@@ -21,7 +21,7 @@ export default function Login () {
     // Network connection error
 
     function handleLogin (e) {
-        console.log ('Login works!');
+
     }
 
     function handleEmail (e) {
@@ -40,7 +40,7 @@ export default function Login () {
             <FormControl>
                 <TextField id="password" label="Password" type="password" variant="standard" />
             </FormControl>
-            <button className="referral-button" style={{color: 'white'}}>LOG IN</button>
+            <button className="referral-button" style={{color: 'white'}} onClick={handleLogin}>LOG IN</button>
         </form>
     )
 }
