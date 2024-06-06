@@ -3,6 +3,8 @@ import {useState} from "react";
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 
+let validEmailRegEx = '';
+
 export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,6 +24,10 @@ export default function Login () {
 
     function handleLogin (e) {
 
+        // Email Validity Check
+        // Email exist check in store
+        // Password match 
+        // Pass or Faild
     }
 
     function handleEmail (e) {
