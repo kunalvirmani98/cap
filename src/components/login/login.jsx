@@ -30,7 +30,9 @@ export default function Login () {
     }
 
     function handleLogin (e) {
-        
+        if (email && password) {
+            // Proceed further
+        }
         // Email Validity Check
         // Email exist check in store
         // Password match 
@@ -46,7 +48,7 @@ export default function Login () {
             <FormControl className="login-text-field">
                 <TextField fullWidth id="password" label="Password" type="password" variant="outlined" onChange={handlePassword} />
             </FormControl>
-            <button className="login-btn" onClick={handleLogin}>LOG IN</button>
+            <button className={`login-btn ${(email !== '' && password !== '') ? '' : 'disabled' }`} onClick={handleLogin}>LOG IN</button>
         </Box>
     )
 }

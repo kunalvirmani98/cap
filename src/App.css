@@ -247,6 +247,16 @@
   cursor: pointer;
 }
 
+.login-window .login-btn.disabled {
+  cursor: not-allowed;
+  background: #e8e8e8 !important;
+  opacity: 1;
+}
+
+.login-window .login-btn.disabled:hover {
+  /* background: ; */
+}
+
 .login-window .login-btn:hover {
   opacity: 1;
 }
